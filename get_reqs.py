@@ -12,7 +12,7 @@ failure = 0
 try:
     url = sys.argv[2]
 except Exception as e:
-    with open("Error_Logs/LoadTesterErrorLog.txt", 'e') as f:
+    with open("Error_Logs/LoadTesterErrorLog.txt", 'a') as f:
         f.write(f"{datetime.datetime.now()}: {e}")
 try:          
     load = sys.argv[1]
@@ -48,5 +48,13 @@ if __name__ == "__main__":
     except NameError:
         print("Please provide a valid load value. See Usage above")
     end_time = datetime.datetime.now()
-    print(f"Time {end_time - start_time}")
+    diff = end_time - start_time
+    seconds = diff.total_seconds()
+    print(f"Total Time Taken: {diff}")
+    try:
+        print(f"Reqs/S: {seconds/success}")
+    except Exception as e:
+        print(f"Reqs/S: 0")
+        with open("Error_Logs/LoadTesterErrorLog.txt", 'a') as f:
+            f.write(f"{datetime.datetime.now()}: {e}")
     print(display_table(success, failure))
