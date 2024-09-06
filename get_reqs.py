@@ -52,9 +52,10 @@ if __name__ == "__main__":
     seconds = diff.total_seconds()
     print(f"Total Time Taken: {diff}")
     try:
-        print(f"Reqs/S: {seconds/success}")
+        print(f"seconds/request: {seconds/success}")
+        print(f"requests/second: {success/seconds}")
     except Exception as e:
-        print(f"Reqs/S: 0")
+        print(f"seconds/request: 0")
         with open("Error_Logs/LoadTesterErrorLog.txt", 'a') as f:
             f.write(f"{datetime.datetime.now()}: {e}")
     print(display_table(success, failure))
