@@ -25,8 +25,7 @@ except Exception as e:
     print("Usage: Python3 get_reqs.py *Load int value* *URL*")
 
 def req(count):
-    global success, failure
-    #os.system(f"curl '{url}'")
+    global success, failure, reqs_sent
     try:
         start = datetime.datetime.now()
         res = requests.get(url)
